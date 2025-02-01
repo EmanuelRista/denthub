@@ -18,7 +18,7 @@ defineProps({
     <AuthenticatedLayout>
         <template #header>
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
-                Data Management
+                Gestione dati
             </h2>
         </template>
 
@@ -26,32 +26,32 @@ defineProps({
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
-                        <h2 class="text-2xl font-bold mb-4">Appointments</h2>
+                        <h2 class="text-2xl font-bold mb-4">Appuntamenti</h2>
                         <div class="overflow-x-auto">
                             <table class="min-w-full divide-y divide-gray-200">
-                                <thead class="bg-gray-50">
+                                <thead class="bg-cyan-800">
                                     <tr>
                                         <th
                                             scope="col"
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-50 uppercase tracking-wider"
                                         >
-                                            Patient
+                                            Paziente
                                         </th>
                                         <th
                                             scope="col"
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-50 uppercase tracking-wider"
                                         >
-                                            Dentist
+                                            Dentista
                                         </th>
                                         <th
                                             scope="col"
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-50 uppercase tracking-wider"
                                         >
-                                            Date
+                                            Data
                                         </th>
                                         <th
                                             scope="col"
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-50 uppercase tracking-wider"
                                         >
                                             Status
                                         </th>
