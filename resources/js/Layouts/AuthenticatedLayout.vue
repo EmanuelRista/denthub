@@ -38,10 +38,12 @@ const showingNavigationDropdown = ref(false);
                                     Dashboard
                                 </NavLink>
                                 <NavLink
-                                    :href="route('data-management')"
-                                    :active="route().current('data-management')"
+                                    :href="route('gestione-appuntamenti')"
+                                    :active="
+                                        route().current('gestione-appuntamenti')
+                                    "
                                 >
-                                    Data Management
+                                    Gestione Appuntamenti
                                 </NavLink>
                                 <NavLink
                                     :href="route('analisi-avanzata')"

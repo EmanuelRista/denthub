@@ -24,14 +24,14 @@ class AppointmentController extends Controller
     }
 
     /**
-     * Display appointments in the data management view.
+     * Display appointments in the Gestione Appuntamenti view.
      */
-    public function dataManagement()
+    public function GestioneAppuntamenti()
     {
         $appointments = Appointment::with(['patient', 'dentist', 'procedure'])->get();
         $patients = Patient::all()->toArray();
         $dentists = Dentist::all()->toArray();
-        return Inertia::render('DataManagement', [
+        return Inertia::render('GestioneAppuntamenti', [
             'appointments' => $appointments,
             'patients' => $patients,
             'dentists' => $dentists,

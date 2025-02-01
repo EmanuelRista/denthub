@@ -21,9 +21,9 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/data-management', [AppointmentController::class, 'dataManagement'])
+Route::get('/gestione-appuntamenti', [AppointmentController::class, 'GestioneAppuntamenti'])
     ->middleware(['auth', 'verified'])
-    ->name('data-management');
+    ->name('gestione-appuntamenti');
 
 Route::get('/analisi-avanzata', function () {
     return Inertia::render('AnalisiAvanzata');

@@ -41,24 +41,26 @@ function createAppointment() {
                 appointment_status: "scheduled",
                 procedure_id: null,
             };
-            // Refresh the page or reload appointments data (you might want to handle this differently)
-            window.location.reload();
+            // Get updated appointments
+            router.get("/gestione-appuntamenti", (newPage) => {
+                appointments.value = newPage.props.appointments;
+            });
         },
         onError: (errors) => {
             console.error("Error creating appointment:", errors);
-            // Handle errors, show them to the user
+            errors.value = Object.values(errors).join(", ");
         },
     });
 }
 </script>
 
 <template>
-    <Head title="Data Management" />
+    <Head title="Gestione Appuntamenti" />
 
     <AuthenticatedLayout>
         <template #header>
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
-                Gestione dati
+                Gestione Appuntamenti
             </h2>
         </template>
 
@@ -162,6 +164,10 @@ function createAppointment() {
                                 Aggiungi Appuntamento
                             </button>
                         </form>
+
+                        <div v-if="errors" class="text-red-500 text-sm mb-5">
+                            {{ errors }}
+                        </div>
 
                         <!-- Table of appointments -->
                         <div class="overflow-x-auto rounded">
