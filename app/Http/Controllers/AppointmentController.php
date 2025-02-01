@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Appointment;
 use App\Models\Patient;
 use App\Models\Dentist;
+use App\Models\Procedure;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -31,10 +32,12 @@ class AppointmentController extends Controller
         $appointments = Appointment::with(['patient', 'dentist', 'procedure'])->get();
         $patients = Patient::all()->toArray();
         $dentists = Dentist::all()->toArray();
+        $procedures = Procedure::all()->toArray();
         return Inertia::render('GestioneAppuntamenti', [
             'appointments' => $appointments,
             'patients' => $patients,
             'dentists' => $dentists,
+            'procedures' => $procedures,
         ]);
     }
 
@@ -47,6 +50,7 @@ class AppointmentController extends Controller
         $validatedData = $request->validate([
             'patient_id' => 'required|exists:patients,id',
             'dentist_id' => 'required|exists:dentists,id',
+            'procedure_id' => 'required|exists:procedures,id',
             'appointment_date' => 'required|date',
             'appointment_status' => 'required|in:scheduled,completed,cancelled',
             // Altri campi con le loro validazioni
@@ -64,13 +68,16 @@ class AppointmentController extends Controller
      */
     public function update(Request $request, Appointment $appointment)
     {
-        // Validazione dei dati
         $validatedData = $request->validate([
-            // Validazioni per l'aggiornamento
+            'patient_id' => 'required|exists:patients,id',
+            'dentist_id' => 'required|exists:dentists,id',
+            'procedure_id' => 'required|exists:procedures,id',
+            'appointment_date' => 'required|date',
+            'appointment_status' => 'required|in:scheduled,completed,cancelled',
+            // Altri campi se necessario
         ]);
 
         $appointment->update($validatedData);
-
         return back()->with('status', 'Appointment updated successfully.');
     }
 

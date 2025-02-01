@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\DentistController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\ProcedureController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -45,6 +46,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/dentists', [DentistController::class, 'store']);
     Route::put('/dentists/{patient}', [DentistController::class, 'update']);
     Route::delete('/dentists/{patient}', [DentistController::class, 'destroy']);
+    Route::get('/procedures', [ProcedureController::class, 'index']);
+    Route::post('/procedures', [ProcedureController::class, 'store']);
+    Route::put('/procedres/{patient}', [ProcedureController::class, 'update']);
+    Route::delete('/procedures/{patient}', [ProcedureController::class, 'destroy']);
 });
 
 
