@@ -19,9 +19,9 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/data-management', function () {
-    return Inertia::render('DataManagement');
-})->middleware(['auth', 'verified'])->name('data-management');
+Route::get('/data-management', [AppointmentController::class, 'dataManagement'])
+    ->middleware(['auth', 'verified'])
+    ->name('data-management');
 
 Route::get('/analisi-avanzata', function () {
     return Inertia::render('AnalisiAvanzata');
@@ -31,14 +31,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-// New routes for AppointmentController
-Route::middleware('auth:sanctum')->group(function () {
     Route::get('/appointments', [AppointmentController::class, 'index']);
     Route::post('/appointments', [AppointmentController::class, 'store']);
     Route::put('/appointments/{appointment}', [AppointmentController::class, 'update']);
     Route::delete('/appointments/{appointment}', [AppointmentController::class, 'destroy']);
 });
+
+
 
 require __DIR__ . '/auth.php';
