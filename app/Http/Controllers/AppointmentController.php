@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appointment;
+use App\Models\Patient;
+use App\Models\Dentist;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
+
 
 class AppointmentController extends Controller
 {
@@ -26,8 +29,12 @@ class AppointmentController extends Controller
     public function dataManagement()
     {
         $appointments = Appointment::with(['patient', 'dentist', 'procedure'])->get();
+        $patients = Patient::all()->toArray();
+        $dentists = Dentist::all()->toArray();
         return Inertia::render('DataManagement', [
             'appointments' => $appointments,
+            'patients' => $patients,
+            'dentists' => $dentists,
         ]);
     }
 
