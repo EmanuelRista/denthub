@@ -56,8 +56,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/patients/{patient}', [PatientController::class, 'destroy']);
     Route::get('/dentists', [DentistController::class, 'index']);
     Route::post('/dentists', [DentistController::class, 'store']);
-    Route::put('/dentists/{patient}', [DentistController::class, 'update']);
-    Route::delete('/dentists/{patient}', [DentistController::class, 'destroy']);
+    Route::put('/dentists/{dentist}', [DentistController::class, 'update']);
+    Route::delete('/dentists/{dentist}', [DentistController::class, 'destroy']);
     Route::get('/procedures', [ProcedureController::class, 'index']);
     Route::post('/procedures', [ProcedureController::class, 'store']);
     Route::put('/procedures/{procedure}', [ProcedureController::class, 'update']);
