@@ -16,24 +16,21 @@ class AppointmentController extends Controller
     /**
      * Display a listing of the appointments.
      */
-    public function index()
-    {
-        $appointments = Appointment::with(['patient', 'dentist', 'procedure'])->get();
-        return Inertia::render('Appointments/Index', [
-            'appointments' => $appointments,
-        ]);
-    }
-
-    /**
-     * Display appointments in the Gestione Appuntamenti view.
-     */
-    public function GestioneAppuntamenti()
+    public function index(Request $request)
     {
         $appointments = Appointment::with(['patient', 'dentist', 'procedure'])->get();
         $patients = Patient::all()->toArray();
         $dentists = Dentist::all()->toArray();
         $procedures = Procedure::all()->toArray();
-        return Inertia::render('GestioneAppuntamenti', [
+
+
+        if ($request->route()->getName() === 'dashboard') {
+            $view = 'Dashboard';
+        } else {
+            $view = 'GestioneAppuntamenti';
+        }
+
+        return Inertia::render($view, [
             'appointments' => $appointments,
             'patients' => $patients,
             'dentists' => $dentists,
