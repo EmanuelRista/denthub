@@ -26,6 +26,18 @@ Route::get('/gestione-appuntamenti', [AppointmentController::class, 'GestioneApp
     ->middleware(['auth', 'verified'])
     ->name('gestione-appuntamenti');
 
+Route::get('/anagrafica-pazienti', [PatientController::class, 'Index'])
+    ->middleware(['auth', 'verified'])
+    ->name('anagrafica-pazienti');
+
+Route::get('/anagrafica-dentisti', [DentistController::class, 'Index'])
+    ->middleware(['auth', 'verified'])
+    ->name('anagrafica-dentisti');
+
+Route::get('/gestione-procedure', [ProcedureController::class, 'Index'])
+    ->middleware(['auth', 'verified'])
+    ->name('gestione-procedure');
+
 Route::get('/analisi-avanzata', function () {
     return Inertia::render('AnalisiAvanzata');
 })->middleware(['auth', 'verified'])->name('analisi-avanzata');
@@ -48,8 +60,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/dentists/{patient}', [DentistController::class, 'destroy']);
     Route::get('/procedures', [ProcedureController::class, 'index']);
     Route::post('/procedures', [ProcedureController::class, 'store']);
-    Route::put('/procedres/{patient}', [ProcedureController::class, 'update']);
-    Route::delete('/procedures/{patient}', [ProcedureController::class, 'destroy']);
+    Route::put('/procedures/{procedure}', [ProcedureController::class, 'update']);
+    Route::delete('/procedures/{procedure}', [ProcedureController::class, 'destroy']);
 });
 
 

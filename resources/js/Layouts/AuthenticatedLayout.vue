@@ -38,6 +38,30 @@ const showingNavigationDropdown = ref(false);
                                     Dashboard
                                 </NavLink>
                                 <NavLink
+                                    :href="route('anagrafica-pazienti')"
+                                    :active="
+                                        route().current('anagrafica-pazienti')
+                                    "
+                                >
+                                    Anagrafica Pazienti
+                                </NavLink>
+                                <NavLink
+                                    :href="route('anagrafica-dentisti')"
+                                    :active="
+                                        route().current('anagrafica-dentisti')
+                                    "
+                                >
+                                    Anagrafica Dentisti
+                                </NavLink>
+                                <NavLink
+                                    :href="route('gestione-procedure')"
+                                    :active="
+                                        route().current('gestione-procedure')
+                                    "
+                                >
+                                    Gestione Procedure
+                                </NavLink>
+                                <NavLink
                                     :href="route('gestione-appuntamenti')"
                                     :active="
                                         route().current('gestione-appuntamenti')

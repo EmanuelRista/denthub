@@ -14,7 +14,7 @@ class DentistController extends Controller
     public function index()
     {
         $dentists = Dentist::all();
-        return Inertia::render('Dentists/Index', ['dentists' => $dentists]);
+        return Inertia::render('AnagraficaDentisti', ['dentists' => $dentists]);
     }
 
     /**

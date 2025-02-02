@@ -14,7 +14,7 @@ class ProcedureController extends Controller
     public function index()
     {
         $procedures = Procedure::all();
-        return Inertia::render('Procedures/Index', ['procedures' => $procedures]);
+        return Inertia::render('GestioneProcedure', ['procedures' => $procedures]);
     }
 
     /**
