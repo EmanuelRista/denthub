@@ -97,6 +97,9 @@ function deleteAppointment(id) {
             onSuccess: () => {
                 refreshAppointments();
             },
+            onFinish: () => {
+                // Eventuali azioni aggiuntive dopo il reindirizzamento
+            },
             onError: (error) => {
                 console.error("Error deleting appointment:", error);
                 errors.value = Object.values(errors).join(", ");

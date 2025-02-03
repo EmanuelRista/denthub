@@ -28,7 +28,8 @@ class ProcedureController extends Controller
             'price' => 'nullable|numeric',
         ]);
         Procedure::create($validatedData);
-        return back()->with('status', 'Procedure created successfully.');
+        session()->flash('status', 'Procedure created successfully');
+        return Inertia::location(back()->getTargetUrl());
     }
 
     /**
@@ -42,7 +43,8 @@ class ProcedureController extends Controller
             'price' => 'nullable|numeric',
         ]);
         $procedure->update($validatedData);
-        return back()->with('status', 'Procedure updated successfully.');
+        session()->flash('status', 'Procedure updated successfully');
+        return Inertia::location(back()->getTargetUrl());
     }
 
     /**
@@ -51,6 +53,7 @@ class ProcedureController extends Controller
     public function destroy(Procedure $procedure)
     {
         $procedure->delete();
-        return back()->with('status', 'Procedure deleted successfully.');
+        session()->flash('status', 'Procedure deleted successfully');
+        return Inertia::location(back()->getTargetUrl());
     }
 }

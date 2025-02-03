@@ -22,7 +22,8 @@ class PatientController extends Controller
             'contact_info' => 'nullable|string|max:255',
         ]);
         Patient::create($validatedData);
-        return back()->with('status', 'Patient created successfully.');
+        session()->flash('status', 'Patient created successfully');
+        return Inertia::location(back()->getTargetUrl());
     }
 
     public function update(Request $request, Patient $patient)
@@ -33,12 +34,14 @@ class PatientController extends Controller
             'contact_info' => 'nullable|string|max:255',
         ]);
         $patient->update($validatedData);
-        return back()->with('status', 'Patient updated successfully.');
+        session()->flash('status', 'Patient updated successfully');
+        return Inertia::location(back()->getTargetUrl());
     }
 
     public function destroy(Patient $patient)
     {
         $patient->delete();
-        return back()->with('status', 'Patient deleted successfully.');
+        session()->flash('status', 'Patient deleted successfully');
+        return Inertia::location(back()->getTargetUrl());
     }
 }

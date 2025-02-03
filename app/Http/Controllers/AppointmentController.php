@@ -8,8 +8,6 @@ use App\Models\Dentist;
 use App\Models\Procedure;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use Inertia\Response;
-
 
 class AppointmentController extends Controller
 {
@@ -23,10 +21,9 @@ class AppointmentController extends Controller
         $dentists = Dentist::all()->toArray();
         $procedures = Procedure::all()->toArray();
 
-
         if ($request->route()->getName() === 'dashboard') {
             $view = 'Dashboard';
-        } else if ($request->route()->getName() === 'analisi-avanzata') {
+        } elseif ($request->route()->getName() === 'analisi-avanzata') {
             $view = 'AnalisiAvanzata';
         } else {
             $view = 'GestioneAppuntamenti';
@@ -52,14 +49,12 @@ class AppointmentController extends Controller
             'procedure_id' => 'required|exists:procedures,id',
             'appointment_date' => 'required|date',
             'appointment_status' => 'required|in:scheduled,completed,cancelled',
-            // Altri campi con le loro validazioni
         ]);
 
         $appointment = Appointment::create($validatedData);
 
-        // In un'applicazione Inertia.js, potresti voler reindirizzare o ritornare una risposta JSON
-        // per aggiornare la vista senza ricaricare la pagina
-        return back()->with('status', 'Appointment created successfully.');
+        session()->flash('status', 'Appointment created successfully');
+        return Inertia::location(back()->getTargetUrl());
     }
 
     /**
@@ -73,20 +68,19 @@ class AppointmentController extends Controller
             'procedure_id' => 'required|exists:procedures,id',
             'appointment_date' => 'required|date',
             'appointment_status' => 'required|in:scheduled,completed,cancelled',
-            // Altri campi se necessario
         ]);
 
         $appointment->update($validatedData);
-        return back()->with('status', 'Appointment updated successfully.');
+        session()->flash('status', 'Appointment updated successfully');
+        return Inertia::location(back()->getTargetUrl());
     }
-
     /**
      * Remove the specified appointment from storage.
      */
     public function destroy(Request $request, Appointment $appointment)
     {
         $appointment->delete();
-
-        return back()->with('status', 'Appointment deleted successfully.');
+        session()->flash('status', 'Appointment deleted successfully');
+        return Inertia::location(back()->getTargetUrl());
     }
 }

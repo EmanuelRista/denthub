@@ -27,7 +27,8 @@ class DentistController extends Controller
             'specialization' => 'nullable|string|max:255',
         ]);
         Dentist::create($validatedData);
-        return back()->with('status', 'Dentist created successfully.');
+        session()->flash('status', 'Dentist created successfully');
+        return Inertia::location(back()->getTargetUrl());
     }
 
     /**
@@ -40,7 +41,8 @@ class DentistController extends Controller
             'specialization' => 'nullable|string|max:255',
         ]);
         $dentist->update($validatedData);
-        return back()->with('status', 'Dentist updated successfully.');
+        session()->flash('status', 'Dentist updated successfully');
+        return Inertia::location(back()->getTargetUrl());
     }
 
     /**
@@ -49,6 +51,7 @@ class DentistController extends Controller
     public function destroy(Dentist $dentist)
     {
         $dentist->delete();
-        return back()->with('status', 'Dentist deleted successfully.');
+        session()->flash('status', 'Dentist deleted successfully');
+        return Inertia::location(back()->getTargetUrl());
     }
 }
