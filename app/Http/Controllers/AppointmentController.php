@@ -26,6 +26,8 @@ class AppointmentController extends Controller
 
         if ($request->route()->getName() === 'dashboard') {
             $view = 'Dashboard';
+        } else if ($request->route()->getName() === 'analisi-avanzata') {
+            $view = 'AnalisiAvanzata';
         } else {
             $view = 'GestioneAppuntamenti';
         }

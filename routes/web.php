@@ -18,10 +18,6 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/analisi-avanzata', function () {
-    return Inertia::render('AnalisiAvanzata');
-})->middleware(['auth', 'verified'])->name('analisi-avanzata');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -43,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/procedures/{procedure}', [ProcedureController::class, 'update']);
     Route::delete('/procedures/{procedure}', [ProcedureController::class, 'destroy']);
     Route::get('/dashboard', [AppointmentController::class, 'index'])->name('dashboard');
+    Route::get('/analisi-avanzata', [AppointmentController::class, 'index'])->name('analisi-avanzata');
     Route::get('/gestione-appuntamenti', [AppointmentController::class, 'index'])->name('gestione-appuntamenti');
     Route::get('/anagrafica-pazienti', [PatientController::class, 'Index'])->name('anagrafica-pazienti');
     Route::get('/anagrafica-dentisti', [DentistController::class, 'Index'])->name('anagrafica-dentisti');
